@@ -65,17 +65,26 @@ python -m http.server 8000
 
 ## 🚀 Deploy Your Own
 
-This app is ready to deploy on Netlify:
+This app is ready to deploy on **Netlify**:
 
-1. **Fork this repository**
+### Quick Deploy
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Goutamchandnani/UKCO)
+
+### Manual Deploy
+
+1. **Fork this repository** on GitHub
 2. **Connect to Netlify:**
-   - Go to [netlify.com](https://netlify.com)
+   - Go to [app.netlify.com](https://app.netlify.com)
    - Click "Add new site" → "Import an existing project"
    - Choose GitHub and select your forked repository
    - Click "Deploy site"
 3. **Done!** Your app is live in ~30 seconds
 
 No build configuration needed - it's a static site!
+
+For detailed instructions, see [NETLIFY_DEPLOY.md](NETLIFY_DEPLOY.md).
+
 
 ## 📁 Project Structure
 
