@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Sponsorship Filter | Find Your Next Opportunity</title>
+    <meta name="description" content="Search and filter UK companies with Worker and Temporary Worker sponsorship licenses">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="title-icon">🇬🇧</span>
+                    UK Sponsorship Filter
+                </h1>
+                <p class="subtitle">Discover companies offering Worker & Temporary Worker sponsorship licenses</p>
+            </div>
+        </header>
+
+        <!-- Upload Section -->
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-card glass-card">
+                <div class="upload-icon">📁</div>
+                <h2>Upload CSV Data</h2>
+                <p class="upload-description">Upload the official UK government sponsorship data file</p>
+                
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="csvFileInput" accept=".csv" hidden>
+                    <label for="csvFileInput" class="upload-label">
+                        <span class="upload-text">Click to browse or drag & drop</span>
+                        <span class="upload-hint">CSV files only</span>
+                    </label>
+                </div>
+                
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-name" id="fileName"></div>
+                    <div class="file-stats" id="fileStats"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" id="searchSection" style="display: none;">
+            <div class="search-card glass-card">
+                <h2>Search Filters</h2>
+                
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="city">
+                        <span class="tab-icon">📍</span>
+                        By City
+                    </button>
+                    <button class="tab-btn" data-filter="keyword">
+                        <span class="tab-icon">🔍</span>
+                        By Keyword
+                    </button>
+                    <button class="tab-btn" data-filter="combined">
+                        <span class="tab-icon">⚡</span>
+                        Combined
+                    </button>
+                </div>
+
+                <div class="filter-content">
+                    <!-- City Filter -->
+                    <div class="filter-panel active" id="cityPanel">
+                        <div class="input-group">
+                            <label for="cityInput">City Name</label>
+                            <input 
+                                type="text" 
+                                id="cityInput" 
+                                placeholder="e.g., London, Manchester, Birmingham"
+                                class="search-input"
+                            >
+                        </div>
+                        <button class="btn btn-primary" id="searchCityBtn">
+                            <span>Search</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+
+                    <!-- Keyword Filter -->
+                    <div class="filter-panel" id="keywordPanel">
+                        <div class="input-group">
+                            <label for="keywordInput">Company Keyword</label>
+                            <input 
+                                type="text" 
+                                id="keywordInput" 
+                                placeholder="e.g., Tech, Solutions, Digital"
+                                class="search-input"
+                            >
+                        </div>
+                        <button class="btn btn-primary" id="searchKeywordBtn">
+                            <span>Search</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+
+                    <!-- Combined Filter -->
+                    <div class="filter-panel" id="combinedPanel">
+                        <div class="input-group">
+                            <label for="combinedCityInput">City Name</label>
+                            <input 
+                                type="text" 
+                                id="combinedCityInput" 
+                                placeholder="e.g., London"
+                                class="search-input"
+                            >
+                        </div>
+                        <div class="input-group">
+                            <label for="combinedKeywordInput">Company Keyword</label>
+                            <input 
+                                type="text" 
+                                id="combinedKeywordInput" 
+                                placeholder="e.g., Tech"
+                                class="search-input"
+                            >
+                        </div>
+                        <button class="btn btn-primary" id="searchCombinedBtn">
+                            <span>Search</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" id="clearBtn" style="display: none;">
+                    Clear Results
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <div class="results-info">
+                    <h2>Search Results</h2>
+                    <span class="results-count" id="resultsCount">0 companies found</span>
+                </div>
+                <button class="btn btn-accent" id="exportBtn">
+                    <span class="btn-icon">⬇</span>
+                    <span>Export CSV</span>
+                </button>
+            </div>
+
+            <div class="results-container glass-card">
+                <div class="loading" id="loadingSpinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Searching...</p>
+                </div>
+
+                <div class="results-table-wrapper" id="resultsTableWrapper">
+                    <table class="results-table" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Organisation Name</th>
+                                <th>City</th>
+                                <th>County</th>
+                                <th>Route</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                            <!-- Results will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No companies found</h3>
+                    <p>Try adjusting your search filters</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,2 +1,17 @@
+# Python
 __pycache__/
+*.pyc
+*.pyo
+
+# CSV Data Files (too large for git)
 *.csv
+
+# Deployment
+.vercel
+.netlify
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
