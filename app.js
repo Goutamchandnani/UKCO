@@ -82,8 +82,18 @@ function handleFileSelect(event) {
 }
 
 function handleFile(file) {
-    if (!file.name.endsWith('.csv')) {
-        showToast('Please select a CSV file', 'error');
+    // Check for CSV extension (case-insensitive) or MIME type
+    const isCsvExtension = file.name.toLowerCase().endsWith('.csv');
+    const isCsvMime = file.type === 'text/csv' ||
+        file.type === 'application/vnd.ms-excel' ||
+        file.type === 'application/csv' ||
+        file.type === 'text/x-csv' ||
+        file.type === 'application/x-csv' ||
+        file.type === 'text/comma-separated-values' ||
+        file.type === 'text/x-comma-separated-values';
+
+    if (!isCsvExtension && !isCsvMime) {
+        showToast('Please select a valid CSV file', 'error');
         return;
     }
 

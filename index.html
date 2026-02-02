@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UK Sponsorship Filter | Find Your Next Opportunity</title>
-    <meta name="description" content="Search and filter UK companies with Worker and Temporary Worker sponsorship licenses">
-    
+    <meta name="description"
+        content="Search and filter UK companies with Worker and Temporary Worker sponsorship licenses">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -36,15 +39,17 @@
                 <div class="upload-icon">📁</div>
                 <h2>Upload CSV Data</h2>
                 <p class="upload-description">Upload the official UK government sponsorship data file</p>
-                
+
                 <div class="upload-zone" id="uploadZone">
-                    <input type="file" id="csvFileInput" accept=".csv" hidden>
+                    <input type="file" id="csvFileInput"
+                        accept=".csv,text/csv,application/vnd.ms-excel,application/csv,text/x-csv,application/x-csv,text/comma-separated-values,text/x-comma-separated-values"
+                        hidden>
                     <label for="csvFileInput" class="upload-label">
                         <span class="upload-text">Click to browse or drag & drop</span>
                         <span class="upload-hint">CSV files only</span>
                     </label>
                 </div>
-                
+
                 <div class="file-info" id="fileInfo" style="display: none;">
                     <div class="file-name" id="fileName"></div>
                     <div class="file-stats" id="fileStats"></div>
@@ -56,7 +61,7 @@
         <section class="search-section" id="searchSection" style="display: none;">
             <div class="search-card glass-card">
                 <h2>Search Filters</h2>
-                
+
                 <div class="filter-tabs">
                     <button class="tab-btn active" data-filter="city">
                         <span class="tab-icon">📍</span>
@@ -77,12 +82,8 @@
                     <div class="filter-panel active" id="cityPanel">
                         <div class="input-group">
                             <label for="cityInput">City Name</label>
-                            <input 
-                                type="text" 
-                                id="cityInput" 
-                                placeholder="e.g., London, Manchester, Birmingham"
-                                class="search-input"
-                            >
+                            <input type="text" id="cityInput" placeholder="e.g., London, Manchester, Birmingham"
+                                class="search-input">
                         </div>
                         <button class="btn btn-primary" id="searchCityBtn">
                             <span>Search</span>
@@ -94,12 +95,8 @@
                     <div class="filter-panel" id="keywordPanel">
                         <div class="input-group">
                             <label for="keywordInput">Company Keyword</label>
-                            <input 
-                                type="text" 
-                                id="keywordInput" 
-                                placeholder="e.g., Tech, Solutions, Digital"
-                                class="search-input"
-                            >
+                            <input type="text" id="keywordInput" placeholder="e.g., Tech, Solutions, Digital"
+                                class="search-input">
                         </div>
                         <button class="btn btn-primary" id="searchKeywordBtn">
                             <span>Search</span>
@@ -111,21 +108,11 @@
                     <div class="filter-panel" id="combinedPanel">
                         <div class="input-group">
                             <label for="combinedCityInput">City Name</label>
-                            <input 
-                                type="text" 
-                                id="combinedCityInput" 
-                                placeholder="e.g., London"
-                                class="search-input"
-                            >
+                            <input type="text" id="combinedCityInput" placeholder="e.g., London" class="search-input">
                         </div>
                         <div class="input-group">
                             <label for="combinedKeywordInput">Company Keyword</label>
-                            <input 
-                                type="text" 
-                                id="combinedKeywordInput" 
-                                placeholder="e.g., Tech"
-                                class="search-input"
-                            >
+                            <input type="text" id="combinedKeywordInput" placeholder="e.g., Tech" class="search-input">
                         </div>
                         <button class="btn btn-primary" id="searchCombinedBtn">
                             <span>Search</span>
@@ -191,4 +178,5 @@
     <!-- App Script -->
     <script src="app.js"></script>
 </body>
+
 </html>

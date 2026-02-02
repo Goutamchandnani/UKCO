@@ -6,40 +6,40 @@
     --color-bg-primary: #0a0e27;
     --color-bg-secondary: #151932;
     --color-bg-tertiary: #1e2442;
-    
+
     /* Glassmorphism */
     --glass-bg: rgba(30, 36, 66, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    
+
     /* Text Colors */
     --color-text-primary: #ffffff;
     --color-text-secondary: #a0aec0;
     --color-text-muted: #718096;
-    
+
     /* Accent Colors */
     --color-accent-purple: #667eea;
     --color-accent-pink: #f093fb;
     --color-accent-blue: #4facfe;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
-    
+
     /* Border Radius */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
-    
+
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-size-xs: 0.75rem;
@@ -49,7 +49,7 @@
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
     --font-size-3xl: 2rem;
-    
+
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
@@ -82,7 +82,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.15) 0%, transparent 50%);
     pointer-events: none;
@@ -554,6 +554,7 @@ body::before {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -564,6 +565,7 @@ body::before {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -575,6 +577,7 @@ body::before {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -586,6 +589,7 @@ body::before {
         opacity: 0;
         transform: translateX(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -597,6 +601,7 @@ body::before {
         opacity: 0;
         transform: translateX(100px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -610,9 +615,12 @@ body::before {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -623,51 +631,94 @@ body::before {
    ============================================ */
 @media (max-width: 768px) {
     .container {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
-    
+
     .title {
         font-size: var(--font-size-2xl);
         flex-direction: column;
+        text-align: center;
     }
-    
+
     .subtitle {
         font-size: var(--font-size-base);
     }
-    
+
     .filter-tabs {
         flex-direction: column;
     }
-    
+
     .tab-btn {
         width: 100%;
+        justify-content: center;
     }
-    
+
     .results-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: var(--spacing-sm);
     }
-    
+
+    .results-info {
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
     .toast-container {
-        left: var(--spacing-md);
-        right: var(--spacing-md);
+        left: var(--spacing-sm);
+        right: var(--spacing-sm);
+        bottom: var(--spacing-sm);
+        top: auto;
     }
-    
+
     .toast {
         min-width: auto;
+        width: 100%;
+    }
+
+    /* Prevent zoom on inputs for iOS */
+    input[type='text'],
+    input[type='file'] {
+        font-size: 16px;
+    }
+
+    .upload-text::after {
+        content: "(or tap)";
+        font-size: var(--font-size-sm);
+        display: block;
+        opacity: 0.8;
     }
 }
 
 @media (max-width: 480px) {
+
     .upload-card,
     .search-card,
     .results-container {
         padding: var(--spacing-md);
     }
-    
+
+    .title-icon {
+        font-size: 2rem;
+    }
+
+    .upload-icon {
+        font-size: 3rem;
+    }
+
     .results-table th,
     .results-table td {
         padding: var(--spacing-xs) var(--spacing-sm);
         font-size: var(--font-size-sm);
+        white-space: nowrap;
+    }
+
+    /* Horizontal scroll for table */
+    .results-table-wrapper {
+        -webkit-overflow-scrolling: touch;
     }
 }
