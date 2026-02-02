@@ -138,6 +138,7 @@ body::before {
     margin-bottom: var(--spacing-xs);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
 }
 
